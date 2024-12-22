@@ -1,5 +1,8 @@
 # Second Semester Exam Documentation 
 
+public ip address: http://http://52.55.150.34/
+Server's name: 52.55.150.34
+
 ## Discription
 This project demostrates how to set up an EC2 server on AWS, configure the operating system to ubuntu, install a web server, deploy an HTML landing page and configure the networking to allow HTTP traffic.
 
@@ -35,7 +38,7 @@ Where "52.55.150.34" is my public IP address
 
 
 ![html page screenshot](<html page screenshot.png>)
-## Configuring the sserver
+## Configuring the server
 1. To allow http access from anywhere, I clicked on the security tab in my aws console instance page. 
 2. I clicked **Edit inbound rules** and clicked the **Add rule** button.
 3. Under Type, i selected HTTP, under port range i wrote 80. For source i chose custom and selected 0.0.0.0/0. for description i wrote "Allows port connection to http request".
@@ -46,5 +49,7 @@ Then i saved the new inbound rule and refreshed my page.
 1. I installed certbot
     `sudo apt install certbot python3-certbot-nginx`
 2. I ran certbot to generate an SSL sertificate
-    `sudo certbot --nginx`
-3. I followed the prompt to configure https
+    `sudo certbot --nginx -d oghor.tech -d www.oghor.tech`
+3. To set up a cron job for automatic renewal, 
+    `sudo crontab -e`
+    `0 0 * * * certbot renew --quiet`
